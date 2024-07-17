@@ -1,7 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { OrderItems, MenuItems } from "../types";
+import { menuItems } from "../data/db";
 export default function useOrder() {
+  const [data, setData] = useState<MenuItems[]>();
   const [order, setOrder] = useState<OrderItems[]>([]);
+
+  useEffect(() => {
+    setData(menuItems);
+  }, []);
   // esta es la funcion que se va a encargar de agregar un item al pedido de tipo menuItems ya que es e tipo que contiene las caracteristicas de los items del menu, y este se le añade una propiedad quantity que es la cantidad de items que se van a pedir
   const addItem = (item: MenuItems) => {
     //console.log(item);
@@ -33,6 +39,7 @@ export default function useOrder() {
     setOrder(order.filter((item) => item.id !== id));
   };
   return {
+    data,
     order,
     addItem,
     removeItem,

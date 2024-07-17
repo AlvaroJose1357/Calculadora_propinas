@@ -1,9 +1,8 @@
 import MenuItem from "./components/MenuItem";
 import OrderContents from "./components/OrderContents";
-import { menuItems } from "./data/db";
 import useOrder from "./hooks/useOrder";
 function App() {
-  const { order, addItem, removeItem } = useOrder();
+  const { data, order, addItem, removeItem } = useOrder();
   return (
     <>
       <header className="bg-teal-400 py-5">
@@ -16,7 +15,7 @@ function App() {
           <h2 className="flex justify-center text-center text-4xl font-black">
             Menu
           </h2>
-          {menuItems.map((item) => (
+          {data?.map((item) => (
             <MenuItem key={item.id} item={item} addItem={addItem} />
           ))}
         </div>
