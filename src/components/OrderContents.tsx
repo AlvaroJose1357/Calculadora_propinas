@@ -3,8 +3,12 @@ import { OrderItems } from "../types";
 
 type OrderContentsProps = {
   order: OrderItems[];
+  removeItem: (id: OrderItems["id"]) => void;
 };
-export default function OrderContents({ order }: OrderContentsProps) {
+export default function OrderContents({
+  order,
+  removeItem,
+}: OrderContentsProps) {
   return (
     <div>
       <h2 className="flex justify-center text-center text-4xl font-black">
@@ -28,7 +32,11 @@ export default function OrderContents({ order }: OrderContentsProps) {
                   {formatCurrency(item.price * item.quantity)}
                 </p>
               </div>
-              <button role="img" aria-label="delete">
+              <button
+                role="img"
+                aria-label="delete"
+                onClick={() => removeItem(item.id)}
+              >
                 🗑️
               </button>
             </div>

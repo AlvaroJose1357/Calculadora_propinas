@@ -28,8 +28,13 @@ export default function useOrder() {
       setOrder([...order, newItem]);
     }
   };
+
+  const removeItem = (id: MenuItems["id"]) => {
+    setOrder(order.filter((item) => item.id !== id));
+  };
   return {
     order,
     addItem,
+    removeItem,
   };
 }
