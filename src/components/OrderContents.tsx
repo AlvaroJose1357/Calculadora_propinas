@@ -39,6 +39,13 @@ export default function OrderContents({
               >
                 🗑️
               </button>
+              {/* opcion 2 para eliminar un item del pedido estilado 
+              <button
+                className="bg-red-600 h-6 w-6 rounded-full text-white font-black"
+                onClick={() => removeItem(item.id)}
+              >
+                X
+              </button> */}
             </div>
           ))
         )}
