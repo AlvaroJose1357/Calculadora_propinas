@@ -5,8 +5,9 @@ import { formatCurrency } from "../helpers";
 type OrderTotalsProps = {
   // Propiedades requeridas
   order: OrderItems[];
+  tip: number;
 };
-export default function OrderTotals({ order }: OrderTotalsProps) {
+export default function OrderTotals({ order, tip }: OrderTotalsProps) {
   // el useMemo nos sirve para memorizar un valor y solo se actualiza cuando sus dependencias cambian
   // recibe un callback y un array de dependencias
   // el reduce es un metodo que se utiliza para reducir un array a un solo valor, el total es un acomulador y el item es el valor actual que se esta procesando
@@ -14,6 +15,7 @@ export default function OrderTotals({ order }: OrderTotalsProps) {
     () => order.reduce((total, item) => total + item.quantity * item.price, 0),
     [order]
   );
+  const tipAmount = useMemo(() => subTotalAmount * tip, [subTotalAmount, tip]);
   return (
     <>
       {/* para darle espaciado a los hijos se utiliza la propiedad space-y-3 en el div padre */}
@@ -25,7 +27,7 @@ export default function OrderTotals({ order }: OrderTotalsProps) {
         </p>
         <p>
           Propina{""}
-          <span className="font-bold"> $0.00</span>
+          <span className="font-bold"> {formatCurrency(tipAmount)}</span>
         </p>
         <p>
           Total a pagar{""}
