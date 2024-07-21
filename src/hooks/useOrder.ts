@@ -4,6 +4,7 @@ import { menuItems } from "../data/db";
 export default function useOrder() {
   const [data, setData] = useState<MenuItems[]>();
   const [order, setOrder] = useState<OrderItems[]>([]);
+  const [tip, setTip] = useState(0);
 
   useEffect(() => {
     setData(menuItems);
@@ -41,6 +42,8 @@ export default function useOrder() {
   return {
     data,
     order,
+    tip,
+    setTip,
     addItem,
     removeItem,
   };
