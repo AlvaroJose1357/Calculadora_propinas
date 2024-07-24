@@ -6,8 +6,13 @@ type OrderTotalsProps = {
   // Propiedades requeridas
   order: OrderItems[];
   tip: number;
+  placeOrder: () => void;
 };
-export default function OrderTotals({ order, tip }: OrderTotalsProps) {
+export default function OrderTotals({
+  order,
+  tip,
+  placeOrder,
+}: OrderTotalsProps) {
   // el useMemo nos sirve para memorizar un valor y solo se actualiza cuando sus dependencias cambian
   // recibe un callback y un array de dependencias
   // el reduce es un metodo que se utiliza para reducir un array a un solo valor, el total es un acomulador y el item es el valor actual que se esta procesando
@@ -38,7 +43,15 @@ export default function OrderTotals({ order, tip }: OrderTotalsProps) {
           <span className="font-bold"> {formatCurrency(totalAmount)}</span>
         </p>
       </div>
-      <button></button>
+      <button
+        className="bg-teal-400 w-full py-2 px-4 text-white rounded font-bold disabled:opacity-50"
+        // disabled={totalAmount === 0}
+        onClick={() => {
+          placeOrder();
+        }}
+      >
+        Guardar pedido
+      </button>
     </>
   );
 }

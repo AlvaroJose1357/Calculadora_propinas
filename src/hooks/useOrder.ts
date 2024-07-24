@@ -39,6 +39,11 @@ export default function useOrder() {
   const removeItem = (id: MenuItems["id"]) => {
     setOrder(order.filter((item) => item.id !== id));
   };
+
+  const placeOrder = () => {
+    setOrder([]);
+    setTip(0);
+  };
   return {
     data,
     order,
@@ -46,5 +51,6 @@ export default function useOrder() {
     setTip,
     addItem,
     removeItem,
+    placeOrder,
   };
 }

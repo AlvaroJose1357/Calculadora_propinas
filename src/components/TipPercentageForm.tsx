@@ -19,22 +19,28 @@ type TipPercentageFormProps = {
   // se le asigna el valor React.Dispatch<React.SetStateAction<number>> debido a que es el tipo de la funcion setTip que infiere React
   // el dispatch dispara una accion para que el SetStateAction actualice el state
   setTip: React.Dispatch<React.SetStateAction<number>>;
+  tip: number;
 };
-export default function TipPercentageForm({ setTip }: TipPercentageFormProps) {
+export default function TipPercentageForm({
+  setTip,
+  tip,
+}: TipPercentageFormProps) {
   return (
     <div>
       <h3 className="font-black text-2xl">Propinas</h3>
       <form>
-        {tipOptions.map((tip) => (
-          <div className="flex gap-2" key={tip.id}>
-            <label htmlFor={tip.id}>{tip.label}</label>
+        {tipOptions.map((tipOption) => (
+          <div className="flex gap-2" key={tipOption.id}>
+            <label htmlFor={tipOption.id}>{tipOption.label}</label>
             <input
               type="radio"
-              id={tip.id}
+              id={tipOption.id}
               name="tip"
-              value={tip.value}
+              value={tipOption.value}
               // se le coloca un evento onChange para que cuando se seleccione una opcion se envie el valor y se coloca el signo + para que el valor sea de tipo number y no string debido a que este es el tipo por defect que tiene el value y number debido a que este es lo que espera el setTip
               onChange={(e) => setTip(+e.target.value)}
+              // va a analizar si el valor de tip es igual al valor de la opcion
+              checked={tipOption.value === tip}
             />
           </div>
         ))}
