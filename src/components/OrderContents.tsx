@@ -20,14 +20,17 @@ export default function OrderContents({
             key={item.id}
             className="flex justify-between items-center border-t border-gray-300 py-5 last-of-type:border-b"
           >
-            <div>
-              <p className="text-lg">
-                {item.name} - {formatCurrency(item.price)}
-              </p>
-              <p className="font-black">
-                Cantidad = {item.quantity} -{" "}
-                {formatCurrency(item.price * item.quantity)}
-              </p>
+            <div className="flex items-center">
+              <p className="mr-2 text-2xl">{item.image}</p>
+              <div className="">
+                <p className="text-lg">
+                  {item.name} - {formatCurrency(item.price)}
+                </p>
+                <p className="font-black">
+                  Cantidad = {item.quantity} -{" "}
+                  {formatCurrency(item.price * item.quantity)}
+                </p>
+              </div>
             </div>
             <button
               role="img"
