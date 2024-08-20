@@ -1,17 +1,18 @@
 import { useMemo } from "react";
 import { OrderItems } from "../types";
 import { formatCurrency } from "../helpers";
+import { OrderActions } from "../reducers/order-reducer";
 
 type OrderTotalsProps = {
   // Propiedades requeridas
   order: OrderItems[];
   tip: number;
-  placeOrder: () => void;
+  dispatch: React.Dispatch<OrderActions>;
 };
 export default function OrderTotals({
   order,
   tip,
-  placeOrder,
+  dispatch,
 }: OrderTotalsProps) {
   // el useMemo nos sirve para memorizar un valor y solo se actualiza cuando sus dependencias cambian
   // recibe un callback y un array de dependencias
@@ -47,7 +48,7 @@ export default function OrderTotals({
         className="bg-teal-400 w-full py-2 px-4 text-white rounded font-bold disabled:opacity-50"
         // disabled={totalAmount === 0}
         onClick={() => {
-          placeOrder();
+          dispatch({ type: "place-order" });
         }}
       >
         Guardar pedido
